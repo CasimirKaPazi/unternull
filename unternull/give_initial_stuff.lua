@@ -21,9 +21,7 @@ local function fill_chest(blockpos)
 	inv:set_stack("main", 3, 'default:dirt 2')
 	inv:set_stack("main", 4, 'default:sapling')
 	inv:set_stack("main", 5, 'default:junglesapling')
-	if minetest.get_modpath("conifer") then
-		inv:set_stack("main", 6, 'conifer:sapling')
-	end
+	inv:set_stack("main", 6, 'conifer:sapling')
 end
 
 if minetest.global_exists("startanode") then
