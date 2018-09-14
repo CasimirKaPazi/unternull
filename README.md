@@ -1,8 +1,15 @@
-Modpack for Minetest
-This creates an infinite ocean for a skyblock like gameplay.
+Unter Null
+==========
 
-License of code:
-GPLv3 or later
+You start swimming in the middle of an infinite ocean. Take your time and build.
 
-License of media:
-CC BY-SA
+This mod creates an infinite ocean and provides some initial blocks to work from. Within time you build your own raft, island, continent.
+
+The name of the mod is in German and translates as "sub zero"
+
+License
+-------
+
+Sourcecode: GPLv3 or later
+
+Media: CC BY-SA
