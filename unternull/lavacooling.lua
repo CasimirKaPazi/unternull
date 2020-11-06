@@ -13,14 +13,16 @@ local function is_not_an_ore(ore_name)
 end
 
 -- Place ore just as often as they occur in mapgen.
-local function choose_ore()
+local function choose_ore(pos)
+	if pos.y > -20 then return "default:stone_crumbled" end
 	local cool_flowing = "default:stone"
 	for _, ore in pairs(minetest.registered_ores) do
 		if is_not_an_ore(ore.ore) then
 			-- Do noting, keep cycling.
-		elseif ore.wherein == cool_flowing and ore.ore_type == "scatter" then
+		elseif ore.wherein == cool_flowing and ore.ore_type == "scatter"
+				and pos.y < ore.y_max and pos.y > ore.y_min then
 			local rarity = math.floor(ore.clust_scarcity / ore.clust_size)
-			if math.random(rarity) == 1 then
+			if math.random(rarity/10) == 1 then
 				cool_flowing = ore.ore
 				break
 			end
@@ -42,7 +44,7 @@ default.cool_lava = function(pos, node)
 		end
 		minetest.set_node(pos, {name = cool_source})
 	else -- Lava flowing
-		local cool_flowing = choose_ore()
+		local cool_flowing = choose_ore(pos)
 		minetest.set_node(pos, {name = cool_flowing})
 	end
 	minetest.sound_play("default_cool_lava",
