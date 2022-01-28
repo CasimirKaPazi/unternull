@@ -32,7 +32,7 @@ local crushingfurnace_receipes = {
 	{"default:ice", "default:snowblock",   2},
 }
 
-function crushingfurnace_get_craft_result(input)
+local function crushingfurnace_get_craft_result(input)
 	if input.method ~= "cooking" then return nil end
 	if input.width ~= 1 then return nil end
 	for _, e in ipairs(crushingfurnace_receipes) do
@@ -195,7 +195,7 @@ minetest.register_node("crushingfurnace:furnace_active", {
 	end,
 })
 
-function hacky_swap_node(pos,name)
+local function hacky_swap_node(pos,name)
 	local node = minetest.get_node(pos)
 	local meta = minetest.get_meta(pos)
 	if node.name == name then
@@ -326,3 +326,9 @@ if minetest.global_exists("smart_inventory") and smart_inventory.crecipes.add_re
 	end
 	 cache.register_on_cache_filled(fill_citem_recipes)
 end
+
+-- small API for external access
+crushingfurnace = {
+	recipes = crushingfurnace_receipes,
+	get_craft_result = crushingfurnace_get_craft_result
+}
